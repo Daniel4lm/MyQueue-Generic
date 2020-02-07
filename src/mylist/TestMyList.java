@@ -45,13 +45,24 @@ class MyList<T> implements Iterable<T> {
 
 	/**
 	 * 
+	 * Konstruktor za inicijalizaciju Liste sa elementima niza
+	 * 
+	 */
+
+	public MyList(T[] array) {
+
+		myElements = array;		
+		size = array.length;
+	}
+
+	/**
+	 * 
 	 * Metod za dodavanje lemenata na kraj niza
 	 * 
 	 */
 
 	public void add(T element) {
-		// System.out.println("Size je: " + size + " stv duzina: " +
-		// ((int)(myElements.length * 0.8)));
+
 		if (size >= (int) (myElements.length * 0.8)) {
 			increaseCapacity();
 		}
@@ -210,48 +221,74 @@ public class TestMyList {
 
 	public static void main(String[] args) {
 
-		MyList<Integer> mojaLista = new MyList<>();
+		MyList<Integer> myList = new MyList<>();
 
-		System.out.println(mojaLista.size());
+		System.out.println("Velicina kolekcije: " + myList.size());
 
-		mojaLista.add(14);
-		mojaLista.add(10);
-		mojaLista.add(54);
-		mojaLista.add(24);
-		// mojaLista.add(null);
-		mojaLista.add(4);
+		myList.add(10);
+		myList.add(54);
+		myList.add(24);
+		myList.add(null);
+		myList.add(4);
 
-		System.out.println(mojaLista.size());
+		System.out.println("Velicina kolekcije: " + myList.size());
 
-		for (int i = 0; i < mojaLista.size(); i++) {
-			System.out.print(mojaLista.get(i) + " ");
+		for (int i = 0; i < myList.size(); i++) {
+			System.out.print(myList.get(i) + " ");
 		}
 		System.out.println();
 
-		mojaLista.remove(2);
-		System.out.println(mojaLista.size());
+		myList.remove(2);
+		System.out.println("Velicina kolekcije: " + myList.size());
 
-		for (Integer it : mojaLista) {
+		for (Integer it : myList) {
 			System.out.print(it + " ");
 		}
 		System.out.println();
 
-		System.out.println(mojaLista.toString());
+		System.out.println(myList.toString());
 
 		for (int i = 0; i < 15; i++) {
-			mojaLista.add(i + 1);
+			myList.add(i + 1);
 		}
 
-		for (Integer it : mojaLista) {
+		for (Integer it : myList) {
 			System.out.print(it + " ");
 		}
 		System.out.println();
 
-		mojaLista.add(8, 84);
-		
-		for (int i = 0; i < mojaLista.size(); i++) {
-			System.out.print(mojaLista.get(i) + " ");
+		myList.add(8, 84);
+
+		for (Integer it : myList) {
+			System.out.print(it + " ");
 		}
+		System.out.println();
+		
+		// Inicijalizacija pomocu niza
+		
+		MyList<String> myList2 = new MyList<String>(new String[] {"prvo","drugo","trece", "cetvrto"});
+		
+		System.out.println("Velicina kolekcije: " + myList2.size());
+		
+		for (String str : myList2) {
+			System.out.print(str + " ");
+		}
+		System.out.println();
+		
+		for (int i = 5; i < 15; i++) {
+			myList2.add(i + 1 + "");
+		}
+		
+		for (String str : myList2) {
+			System.out.print(str + " ");
+		}
+		System.out.println();
+		
+		System.out.println("Velicina kolekcije: " + myList2.size());
+
+		System.out.println(myList2.toString());
+
+		
 	}
 
 }
