@@ -2,6 +2,7 @@ package mylist;
 
 import java.util.Arrays;
 import java.util.Iterator;
+import java.util.List;
 
 class MyList<T> implements Iterable<T> {
 
@@ -42,6 +43,18 @@ class MyList<T> implements Iterable<T> {
 		myElements = new Object[initialCapacity];
 
 	}
+	
+	/**
+	 * 
+	 *  Konstruktor koji inicijalizira niz elemanata sa kapacitetom
+	 *  
+	 */
+	
+	public MyList(final int capacity) {
+
+		myElements = new Object[capacity];
+
+	}
 
 	/**
 	 * 
@@ -53,6 +66,18 @@ class MyList<T> implements Iterable<T> {
 
 		myElements = array;		
 		size = array.length;
+	}
+	
+	/**
+	 * 
+	 * Konstruktor za inicijalizaciju Liste preko druge liste
+	 * 
+	 */
+	
+	public MyList(List<T> list) {
+
+		myElements = list.toArray();		
+		size = list.size();
 	}
 
 	/**
@@ -266,7 +291,7 @@ public class TestMyList {
 		
 		// Inicijalizacija pomocu niza
 		
-		MyList<String> myList2 = new MyList<String>(new String[] {"prvo","drugo","trece", "cetvrto"});
+		MyList<String> myList2 = new MyList<>(new String[] {"prvo","drugo","trece", "cetvrto"});
 		
 		System.out.println("Velicina kolekcije: " + myList2.size());
 		
@@ -288,6 +313,16 @@ public class TestMyList {
 
 		System.out.println(myList2.toString());
 
+		// Inicijalizacija pomocu druge liste
+		
+		MyList<String> myList3 = new MyList<>(Arrays.asList(new String[] {"prvo","drugo","trece", "cetvrto"}));
+
+		System.out.println("Velicina kolekcije: " + myList3.size());
+		
+		for (String str : myList3) {
+			System.out.print(str + " ");
+		}
+		System.out.println();
 		
 	}
 
